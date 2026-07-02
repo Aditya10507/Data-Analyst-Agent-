@@ -13,7 +13,7 @@ export function ShowReportAssistantCard({ jobResult }: ReportAssistantCardProps)
   const assistant = useReportAssistant({ jobId: jobResult.job_id });
 
   return (
-    <section className="mt-6 rounded-lg border border-indigo-100 bg-indigo-50/60 p-3 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+    <section className="sticky top-4 mt-6 rounded-lg border border-indigo-100 bg-indigo-50/95 p-3 shadow-sm backdrop-blur dark:border-slate-800 dark:bg-slate-900">
       <div className="flex flex-col gap-1">
         <h3 className="text-sm font-semibold text-slate-950 dark:text-white">Report Assistant</h3>
         <p className="text-xs text-slate-600 dark:text-slate-300">Ask only about this report.</p>

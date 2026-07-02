@@ -29,7 +29,7 @@ export function ShowSidebarNav() {
   const setActiveView = useAppStore((state) => state.setActiveView);
 
   return (
-    <aside className="hidden w-64 border-r border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900 md:block">
+    <aside className="sticky top-0 hidden h-screen w-64 shrink-0 overflow-y-auto border-r border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900 md:block">
       <div className="mb-8">
         <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
           AI Analyst
