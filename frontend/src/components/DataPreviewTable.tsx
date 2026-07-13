@@ -68,6 +68,7 @@ export function ShowDataPreviewTable({ preview }: DataPreviewTableProps) {
         <table className="w-full min-w-[720px] border-separate border-spacing-0 text-sm">
           {renderHeaders(tableModel.headerGroups, tableModel.columnMap)}
           <ShowDataPreviewVirtualRows
+            columnCount={preview.columns.length}
             rows={tableModel.rows}
             totalSize={tableModel.totalSize}
             virtualRows={tableModel.virtualRows}

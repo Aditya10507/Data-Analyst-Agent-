@@ -1,4 +1,4 @@
-import { LogOut } from "lucide-react";
+import { Grid2X2, LogOut } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { useAppStore } from "../store/appStore";
 import { ShowThemeToggle } from "./ThemeToggle";
@@ -10,21 +10,28 @@ function buildTitle(activeView: string): string {
   return activeView.charAt(0).toUpperCase() + activeView.slice(1);
 }
 
+type TopHeaderProps = {
+  onWorkspaceClick: () => void;
+};
+
 /** Show and return the top application header. */
-export function ShowTopHeader() {
+export function ShowTopHeader({ onWorkspaceClick }: TopHeaderProps) {
   const activeView = useAppStore((state) => state.activeView);
   const title = buildTitle(activeView);
 
   return (
     <header className="border-b border-slate-200 bg-white px-6 py-4 dark:border-slate-800 dark:bg-slate-900">
       <div className="flex items-center justify-between gap-4">
-        <div>
+        <div className="flex items-center gap-4">
+          <button aria-label="Open workspace menu" className="grid h-10 w-10 place-items-center rounded-md border border-slate-200 text-slate-600 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800" onClick={onWorkspaceClick} title="Workspace" type="button"><Grid2X2 className="h-5 w-5" /></button>
+          <div>
           <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
             AI Data Analyst
           </p>
           <h2 className="mt-1 text-2xl font-semibold text-slate-950 dark:text-white">
             {title}
           </h2>
+          </div>
         </div>
         <ShowHeaderActions />
       </div>

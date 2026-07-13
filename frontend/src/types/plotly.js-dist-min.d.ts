@@ -1,5 +1,7 @@
 type PlotlyConfig = {
+  displayModeBar?: boolean | "hover";
   displaylogo?: boolean;
+  modeBarButtonsToRemove?: string[];
   responsive?: boolean;
 };
 
@@ -19,6 +21,9 @@ type BrowserPlotly = {
     layout: PlotlyLayout,
     config?: PlotlyConfig,
   ) => Promise<unknown>;
+  Plots: {
+    resize: (element: HTMLDivElement) => void;
+  };
   purge: (element: HTMLDivElement) => void;
 };
 

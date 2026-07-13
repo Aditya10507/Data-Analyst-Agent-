@@ -1,8 +1,7 @@
-.env
-.git
-.venv
-__pycache__
-node_modules
-dist
-.pytest_cache
-coverage
+*
+!backend/
+!backend/Dockerfile
+!backend/app/
+!backend/app/**
+!backend/requirements.txt
+!backend/requirements-files.txt

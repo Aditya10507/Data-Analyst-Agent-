@@ -17,6 +17,7 @@ export type ChartMode = "2d" | "3d";
 type ChartPanelProps = {
   activeTab: ChartTab;
   analysisResult: AnalysisResult;
+  initialChartMode?: ChartMode;
   jobId: string | null;
   onActiveTabChange: (activeTab: ChartTab) => void;
   onSelectedColumnChange: (columnName: string | null) => void;
@@ -32,8 +33,9 @@ const CHART_TABS: { label: string; value: ChartTab }[] = [
 
 /** Show and return the responsive dashboard chart panel. */
 export function ShowChartPanel(props: ChartPanelProps) {
-  const [chartMode, setChartMode] = useState<ChartMode>("2d");
-  const [isThreeDimensionalMounted, setIsThreeDimensionalMounted] = useState(false);
+  const initialChartMode = props.initialChartMode ?? "2d";
+  const [chartMode, setChartMode] = useState<ChartMode>(initialChartMode);
+  const [isThreeDimensionalMounted, setIsThreeDimensionalMounted] = useState(initialChartMode === "3d");
   const { activeTab, analysisResult, jobId, onActiveTabChange, onSelectedColumnChange, selectedColumn } = props;
   const activeLabel = CHART_TABS.find((tab) => tab.value === activeTab)?.label ?? "chart";
   const selectableColumns = buildSelectableColumns(analysisResult, activeTab);
@@ -44,14 +46,18 @@ export function ShowChartPanel(props: ChartPanelProps) {
   }, []);
 
   return (
-    <section className="rounded-lg border border-blue-100 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-      <ShowChartTabs activeTab={activeTab} onActiveTabChange={onActiveTabChange} />
-      <div className="mt-5">
+    <section className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+      <div className="border-b border-slate-100 p-5 dark:border-slate-800">
+        <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
+          <ShowChartTabs activeTab={activeTab} onActiveTabChange={onActiveTabChange} />
+          <ShowChartModeToggle chartMode={chartMode} onChartModeChange={(nextMode) => handleChartModeChange(nextMode, setChartMode, setIsThreeDimensionalMounted)} />
+        </div>
+        <ShowChartColumnControls columns={selectableColumns} onChange={onSelectedColumnChange} selectedColumn={selectedColumn} />
+      </div>
+      <div className="p-5">
         <ShowChartAiActions chartLabel={activeLabel} jobId={jobId} />
       </div>
-      <ShowChartModeToggle chartMode={chartMode} onChartModeChange={(nextMode) => handleChartModeChange(nextMode, setChartMode, setIsThreeDimensionalMounted)} />
-      <ShowChartColumnControls columns={selectableColumns} onChange={onSelectedColumnChange} selectedColumn={selectedColumn} />
-      <div className="mt-5 max-h-[720px] overflow-auto pr-2">
+      <div className="max-h-[720px] overflow-x-auto overflow-y-auto px-5 pb-5">
         {renderChartOutput(chartMode, activeTab, analysisResult, selectedColumn, isThreeDimensionalMounted)}
       </div>
     </section>
@@ -88,7 +94,7 @@ function renderChartOutput(chartMode: ChartMode, activeTab: ChartTab, analysisRe
       <div className={chartMode === "2d" ? "block" : "hidden"}>{renderChart(activeTab, analysisResult, selectedColumn)}</div>
       {isThreeDimensionalMounted ? (
         <div className={chartMode === "3d" ? "block" : "hidden"}>
-          <ShowPlotly3DChart activeTab={activeTab} analysisResult={analysisResult} selectedColumn={selectedColumn} />
+          <ShowPlotly3DChart activeTab={activeTab} analysisResult={analysisResult} isVisible={chartMode === "3d"} selectedColumn={selectedColumn} />
         </div>
       ) : null}
     </>

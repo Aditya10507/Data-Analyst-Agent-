@@ -66,7 +66,7 @@ function buildCleanedCsvAction(jobResult: JobResult, addDownloadRecord: AddDownl
 function buildPdfAction(jobResult: JobResult, addDownloadRecord: AddDownloadRecord, addToast: AddToast): ExportAction {
   return {
     icon: FileText,
-    label: "Export report as PDF",
+    label: "Download business report",
     onClick: () => void exportPdf(jobResult, addDownloadRecord, addToast),
   };
 }

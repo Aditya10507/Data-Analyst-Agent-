@@ -3,6 +3,7 @@ import { z } from "zod";
 const BYTES_PER_MEGABYTE = 1024 * 1024;
 export const ACCEPTED_FILE_FORMATS = "CSV, JSON, TSV, TXT, XLS, and XLSX";
 export const ACCEPTED_EXTENSIONS = [".csv", ".json", ".tsv", ".txt", ".xls", ".xlsx"];
+export const FILE_PICKER_ACCEPT = ".csv,.json,.tsv,.txt,.xls,.xlsx,text/csv,application/json,text/tab-separated-values,text/plain,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 export const MAX_FILE_SIZE_MB = 50;
 export const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * BYTES_PER_MEGABYTE;
 const ACCEPTED_MIME_TYPES = ["text/csv", "application/json", "text/tab-separated-values", "text/plain", "application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "application/octet-stream"];

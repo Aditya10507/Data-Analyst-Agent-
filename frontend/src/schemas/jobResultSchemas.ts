@@ -17,7 +17,10 @@ const dataQualitySchema = z.object({
 export const jobResultSchema = z.object({
   column_meta: z.record(z.object({
     dtype: z.string().optional().nullable(),
+    null_count: z.number().optional().nullable(),
+    null_percent: z.number().optional().nullable(),
     semantic_type: z.string().optional().nullable(),
+    unique_count: z.number().optional().nullable(),
   })),
   data_quality: dataQualitySchema.optional(),
   download_urls: z.object({

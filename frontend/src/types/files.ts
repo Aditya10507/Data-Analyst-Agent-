@@ -65,8 +65,16 @@ export type DataQualityScore = {
   score: number;
 };
 
+export type ColumnMetadata = {
+  dtype?: string | null;
+  null_count?: number | null;
+  null_percent?: number | null;
+  semantic_type?: string | null;
+  unique_count?: number | null;
+};
+
 export type JobResult = {
-  column_meta: Record<string, { dtype?: string | null; semantic_type?: string | null }>;
+  column_meta: Record<string, ColumnMetadata>;
   data_quality?: DataQualityScore;
   download_urls: { cleaned_csv: string; original: string };
   filename: string;

@@ -1,5 +1,5 @@
 import { jobResultSchema } from "../schemas/jobResultSchemas";
-import type { JobResult, ParsedFilePreview, PreviewColumn } from "../types/files";
+import type { ColumnMetadata, JobResult, ParsedFilePreview, PreviewColumn } from "../types/files";
 import { buildAnalysisResult } from "./analysisResult";
 
 /** Parse and return a completed backend job result. */
@@ -38,7 +38,7 @@ function buildPreviewColumns(jobResult: JobResult): PreviewColumn[] {
 }
 
 /** Infer and return a preview column type from backend metadata. */
-function inferColumnType(meta: { dtype?: string | null; semantic_type?: string | null }): PreviewColumn["type"] {
+function inferColumnType(meta: ColumnMetadata): PreviewColumn["type"] {
   const semanticType = meta.semantic_type ?? "";
   const dtype = meta.dtype ?? "";
   if (semanticType === "date" || dtype.includes("datetime")) {

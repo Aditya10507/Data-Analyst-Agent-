@@ -6,7 +6,6 @@ import { ShowCleaningReviewPanel } from "./CleaningReviewPanel";
 import { ShowJobFailurePanel } from "./JobFailurePanel";
 import { ShowUploadErrorMessage } from "./UploadErrorMessage";
 import { ShowUploadPipelineSteps } from "./UploadPipelineSteps";
-const ACCEPTED_FILE_TYPES = ".csv,.json,.tsv,.txt,.xls,.xlsx";
 const ACTIVE_STATUSES = new Set(["uploading", "queued", "reviewing", "processing"]);
 
 /** Build and return a drop zone class name. */
@@ -106,7 +105,7 @@ function renderDropZone(upload: FileUploadController): ReactElement {
       <input
         className="sr-only"
         type="file"
-        accept={ACCEPTED_FILE_TYPES}
+        aria-label="Choose a CSV, JSON, TSV, TXT, XLS, or XLSX file"
         onChange={(event) => void handleChange(event, upload)}
       />
       <FileText className="mx-auto h-10 w-10 text-slate-400" aria-hidden="true" />

@@ -112,6 +112,7 @@ function buildLayout(title: string, xTitle: string, yTitle: string, zTitle: stri
     margin: { b: 0, l: 0, r: 0, t: 42 },
     paper_bgcolor: "rgba(0,0,0,0)",
     plot_bgcolor: "rgba(0,0,0,0)",
+    showlegend: false,
     scene: { camera: { eye: { x: 1.6, y: 1.6, z: 1.2 } }, xaxis: { title: xTitle }, yaxis: { title: yTitle }, zaxis: { title: zTitle } },
     title,
   };

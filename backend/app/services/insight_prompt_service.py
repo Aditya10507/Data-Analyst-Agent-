@@ -45,7 +45,11 @@ def build_task_instruction() -> str:
         "Return exactly 5 business insights. Each body must mention concrete "
         "columns, observed values, percentages, or counts when available, plus "
         "a next action. Flag nulls, duplicates, outliers, or parsing issues as "
-        "type warning. Avoid generic dashboard commentary."
+        "type warning. Assess the whole dataset, including both positive signals "
+        "and risks. Discuss profit, loss, revenue, sales, costs, margins, or "
+        "other financial drivers only when matching fields exist in the profile; "
+        "otherwise explicitly state that financial performance cannot be inferred. "
+        "Avoid generic dashboard commentary."
     )
 
 

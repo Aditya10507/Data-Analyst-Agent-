@@ -41,7 +41,7 @@ flowchart LR
 - Interactive dashboard: KPI cards, virtualized preview table, 2D charts, rotatable 3D Plotly charts, D3 correlation heatmap, column drilldown, and smart chart recommendations.
 - Grounded AI analyst chat: answers questions only from the produced report, charts, stats, cleaning report, insights, and data quality score.
 - Saved report versions: every completed analysis stores an immutable report snapshot that can be reopened from the dashboard.
-- Export tools: cleaned CSV download, server-side PDF report, copy insights as markdown, and recent download history.
+- Export tools: cleaned CSV download, a business-ready PDF with cover page, executive summary, KPIs, quality score, insights, charts, cleaning log, recommendations, copy insights as markdown, and recent download history.
 - Observability: structured JSON logs shipped to Loki with Grafana dashboards.
 
 ## Upload And Analysis Flow
